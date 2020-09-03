@@ -1,0 +1,5 @@
+WebAPI/__pycache__/
+WebAPI/migrations/__pycache__/
+WebEngine/__pycache__/
+WebUI/
+db.sqlite3

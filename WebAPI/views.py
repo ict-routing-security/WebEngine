@@ -1,7 +1,9 @@
+from django.core.exceptions import SuspiciousOperation
+from django.http import HttpResponse
 import os
 import subprocess
-from django.http import HttpResponse
 
 def API_action(request,action):
-  #;TODO complete data-fetch operation
-  return HttpResponse(f'{action}')
+  if action == "get_data":
+    pass #;TODO 实现获取数据的功能
+  raise SuspiciousOperation("Operation not allowed.")

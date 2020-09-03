@@ -22,9 +22,10 @@ from WebEngine.settings import BASE_DIR
 from WebAPI.views import API_action
 
 urlpatterns = [
-  path('admin/',admin.site.urls),
-  re_path(r'^wui/(?P<path>.*)$',serve,{
+  path('admin/',admin.site.urls,{},'admin'),
+  #;TODO 添加规则，将“ui/”重定向至“ui/index.html”
+  re_path(r'^ui/(?P<path>.+)$',serve,{
     'document_root':os.path.join(BASE_DIR,'WebUI'),
-  },'wui_pattern'),
-  re_path(r'^wapi/(?P<action>.*)$',API_action),
+  },'ui'),
+  re_path(r'^api/(?P<action>.*)$',API_action,{},'api'),
 ]

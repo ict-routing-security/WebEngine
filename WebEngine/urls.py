@@ -23,9 +23,9 @@ from WebAPI.views import API_action
 
 urlpatterns = [
   path('admin/',admin.site.urls,{},'admin'),
-  #;TODO 添加规则，将“ui/”重定向至“ui/index.html” test
+  #;TODO 添加规则，将“ui/”重定向至“ui/index.html”
   re_path(r'^ui/(?P<path>.+)$',serve,{
-    'document_root':os.path.join(BASE_DIR,'WebUI'),
+    'document_root':os.path.join(BASE_DIR,'WebUI/routing-security-vue/dist'),
   },'ui'),
   re_path(r'^api/(?P<action>.*)$',API_action,{},'api'),
 ]

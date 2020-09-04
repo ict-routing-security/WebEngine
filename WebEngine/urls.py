@@ -23,7 +23,7 @@ from WebAPI.views import API_action
 
 urlpatterns = [
   path('admin/',admin.site.urls,{},'admin'),
-  #;TODO 添加规则，将“ui/”重定向至“ui/index.html”
+  #;TODO 添加规则，将“ui/”重定向至“ui/index.html” test
   re_path(r'^ui/(?P<path>.+)$',serve,{
     'document_root':os.path.join(BASE_DIR,'WebUI'),
   },'ui'),

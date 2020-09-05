@@ -21,56 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3768f74f-d0c0-4393-b58c-ac79d4a696f3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/.browserslistrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/.prettierrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/postcss.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/public/table.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/api/axios.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/api/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/css/color-dark.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/css/icon.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/css/theme-green/color-green.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/css/theme-green/fonts/element-icons.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/css/theme-green/fonts/element-icons.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/css/theme-green/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/img/abnormal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/img/img.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/img/login-bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/img/normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/img/tuopu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/common/Header.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/common/Home.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/common/Sidebar.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/common/Tags.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/common/bus.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/common/directives.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/common/i18n.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/403.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/404.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/I18n.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/Icon.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/Login.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/Permission.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/base_form.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/real_attack.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/real_each.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/real_global.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/simu_attack.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/simu_each.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/simu_global.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/router/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/utils/request.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/vue.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +62,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="571" y="417" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599180596685">

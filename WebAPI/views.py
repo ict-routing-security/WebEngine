@@ -13,7 +13,7 @@ def API_action(request,action):
     result['abnormal_behaviors'] = ['序列号加一攻击','伪装攻击']
 
     #以下数据库所有的异常记录
-    result['tableData'] = 
+    result['tableData'] =
 
 
 

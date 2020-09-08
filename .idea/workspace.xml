@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3768f74f-d0c0-4393-b58c-ac79d4a696f3" name="Default Changelist" comment="" />
+    <list default="true" id="79d2d33a-096d-48f4-b138-b0c3000c2f1d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/WebAPI/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/models.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,51 +15,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1gzWZfE8XHoLHSdgK8BJvfGCsKx" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="3768f74f-d0c0-4393-b58c-ac79d4a696f3" name="Default Changelist" comment="" />
-      <created>1599117958740</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1599117958740</updated>
-    </task>
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="571" y="417" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599180596685">
-      <screen x="0" y="23" width="1792" height="1041" />
-    </state>
-    <state x="571" y="417" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1041@0.23.1792.1041" timestamp="1599180596685" />
-    <state x="659" y="297" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599182960002">
-      <screen x="0" y="23" width="1792" height="1041" />
-    </state>
-    <state x="659" y="297" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1041@0.23.1792.1041" timestamp="1599182960002" />
-    <state x="290" y="170" key="SettingsEditor" timestamp="1599221165532">
-      <screen x="0" y="23" width="1792" height="1041" />
-    </state>
-    <state x="290" y="170" key="SettingsEditor/0.23.1792.1041@0.23.1792.1041" timestamp="1599221165532" />
   </component>
 </project>

@@ -21,7 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3768f74f-d0c0-4393-b58c-ac79d4a696f3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

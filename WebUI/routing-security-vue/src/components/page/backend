@@ -1,0 +1,99 @@
+<el-row :gutter="20">
+<el-col :span="8">
+  <el-card shadow="hover" class="mgb20" style="height:252px;">
+    <div class="user-info">
+      <img :src="get_status_pic" class="user-avator" alt />
+      <div class="user-info-cont">
+        <div class="user-info-name">{{get_status_disc}}</div>
+      </div>
+    </div>
+    <div class="user-info-list">
+      可能的异常路由器：
+      <span>{{abnormal_routers}}</span>
+    </div>
+    <div class="user-info-list">
+      可能存在的异常行为：
+      <span>{{abnormal_behaviors}}</span>
+    </div>
+  </el-card>
+  <el-card shadow="hover" style="height:332px;">
+    <div slot="header" class="clearfix">
+      <span>历史异常分类</span>
+    </div>序列号加一攻击
+    <el-progress :percentage="71.3" color="#42b983"></el-progress>配置异常
+    <el-progress :percentage="24.1" color="#f1e05a"></el-progress>LSR报文伪造攻击
+    <el-progress :percentage="13.7"></el-progress>最大年龄攻击
+    <el-progress :percentage="5.0" color="#f56c6c"></el-progress>伪装攻击
+    <el-progress :percentage="500" color="#f96c7a"></el-progress>最大序列号攻击
+    <el-progress :percentage="0.4" color="#0200a0"></el-progress>
+  </el-card>
+</el-col>
+<el-col :span="16">
+  <el-row :gutter="20" class="mgb20">
+    <el-col :span="8">
+      <el-card shadow="hover" :body-style="{padding: '0px'}">
+        <div class="grid-content grid-con-1">
+          <i class="el-icon-tickets grid-con-icon"></i>
+          <div class="grid-cont-right">
+            <div class="grid-num">1234</div>
+            <div>路由器总数</div>
+          </div>
+        </div>
+      </el-card>
+    </el-col>
+    <el-col :span="8">
+      <el-card shadow="hover" :body-style="{padding: '0px'}">
+        <div class="grid-content grid-con-2">
+          <i class="el-icon-tickets grid-con-icon"></i>
+          <div class="grid-cont-right">
+            <div class="grid-num">321</div>
+            <div>路由器在线数</div>
+          </div>
+        </div>
+      </el-card>
+    </el-col>
+    <el-col :span="8">
+      <el-card shadow="hover" :body-style="{padding: '0px'}">
+        <div class="grid-content grid-con-3">
+          <i class="el-icon-tickets grid-con-icon"></i>
+          <div class="grid-cont-right">
+            <div class="grid-num">5000</div>
+            <div>危险路由器数</div>
+          </div>
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
+  <el-card shadow="hover" style="height:483px;">
+    <div slot="header" class="clearfix">
+      <span>路由拓扑</span>
+    </div>
+    <div class="tuopudiv">
+      <div :class="tuopu" :id="tp" style="height: 440px;,width: 460px"></div>
+    </div>
+  </el-card>
+</el-col>
+</el-row>
+
+<el-row :gutter="20">
+<el-card shadow="hover" :body-style="{padding: '0px'}">
+  <div slot="header" class="clearfix">
+    <span>历史异常记录</span>
+  </div>
+  <el-table
+      :data="tableData"
+      border
+      class="table"
+      ref="multipleTable"
+      header-cell-class-name="table-header"
+      @selection-change="handleSelectionChange"
+  >
+    <el-table-column prop="no" label="序号"  align="center"></el-table-column>
+    <el-table-column prop="date" label="日期"  align="center"></el-table-column>
+    <el-table-column prop="time" label="时间"  align="center"></el-table-column>
+    <el-table-column prop="ID" label="路由器ID" align="center"></el-table-column>
+    <el-table-column prop="type" label="关键风险异常" align="center"></el-table-column>
+    <el-table-column prop="grade" label="风险威胁等级" align="center"></el-table-column>
+  </el-table>
+</el-card>
+</el-row>

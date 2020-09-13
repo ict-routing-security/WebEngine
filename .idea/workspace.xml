@@ -3,9 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="79d2d33a-096d-48f4-b138-b0c3000c2f1d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebAPI/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebEngine/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebEngine/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebEngine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebEngine/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebUI/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/dist/static/css/real_global.5e34160b.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/dist/static/img/tuopu.df423a75.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/dist/static/js/app.58fee930.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/dist/static/js/real_global.385f0c2c.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +20,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectId" id="1hRD8JmkYg5vDpAKPyKxhOQwSCs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
@@ -46,7 +57,15 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="79d2d33a-096d-48f4-b138-b0c3000c2f1d" name="Default Changelist" comment="" />
+      <created>1599964850624</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599964850624</updated>
+    </task>
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

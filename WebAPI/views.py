@@ -1,5 +1,6 @@
 from django.core.exceptions import SuspiciousOperation
 from django.http import JsonResponse
+from django.db.models import Q
 from WebAPI import models
 from django.db.models import Max
 import os
@@ -25,9 +26,49 @@ def get_abn_bhvs(l):
 def get_graph(adj_dict, anm_router_list):
   #理论上存在节点没有邻居所以在adj_dict中没有表项的情况，所以节点的最大ID通过提前遍历得到
   max_id  = -1
+  links = []
   for (k,v) in adj_dict.items():
     max_id = max(max_id, k)
-  ???
+    for j in v:
+      if (j > k):
+        links.append({'source': k,'target': j, 'value': ""})
+  nodes = []
+
+  for i in range(max_id+1):
+    name = 'Router-' + str(i)
+    category = 0
+    if i in anm_router_list:
+      category = 1
+    symbolSize = 40
+    nodes.append({'name':name, 'category': category, 'symbolSize': symbolSize})
+  return nodes,links
+
+def get_anomaly_all(anomalys):
+  anomalys = anomalys.order_by('-time')
+  tableData = []
+  num = -1
+  a_nums = [0,0,0,0,0,0]
+  for a in anomalys:
+    num += 1
+    no = num
+    date = str(a.time).strip().split(' ')[0]
+    time = str(a.time).strip().split(' ')[1]
+    id  = a.rid
+    type = anomaly_dict[a.event]
+    max_prob = max(a.prob_1, a.prob_2, a.prob_3, a.prob_4, a.prob_5, a.prob_6)
+    grade = 1
+    if(max_prob > 0.5):
+      grade = 3
+    elif(max_prob > 0.3):
+      grade =2
+    a_nums[a.event] += 1
+    tableData.append({'no': no, 'date': date, 'time': time, 'ID': id, 'type': type, 'grade': grade})
+  sum = 0
+  for a in a_nums:
+    sum += a
+  for i in range(len(a_nums)):
+    a_nums[i] = (a_nums[i] / sum )*100
+  return tableData,a_nums
 
 def API_action(request,action):
   result = {}
@@ -60,39 +101,69 @@ def API_action(request,action):
     online_router_num = len(router_nb_dict) #当某个节点没有邻居的时候，将不会被统计
     all_router_num = online_router_num  #路由器总数，应该为手动获取，这里直接等于在线路由器总数
     # print(router_nb_dict)
+    nodes,links = get_graph(router_nb_dict, abnormal_routers)
+
+    anomalys = models.Anomaly.objects.all()
+    tableData, a_radio = get_anomaly_all(anomalys)
 
     # 以下根据数据库中最近一小时内的异常记录
     result['status'] = status #normal or abnormal
-    result['abnormal_routers'] = list(abnormal_routers)
+    result['abnormal_routers'] = abnormal_routers
     result['abnormal_behaviors'] = abnormal_behaviors
-    #以下数据库所有的异常记录
-    result['tableData'] = [{
-        'no': '1',
-        'date':'2020-8-21',
-        'time': '23:13',
-        'ID': '12',
-        'type': '序列号加一攻击',
-        'grade': '3'
-      },
-      {
-        'no': '2',
-        'date': '2020-8-21',
-        'time': '23:21',
-        'ID': '12',
-        'type': '伪装攻击',
-        'grade': '2'
-      },
-      {
-        'no': '3',
-        'date': '2020-8-21',
-        'time': '00:21',
-        'ID': '12',
-        'type': '最大序列号攻击',
-        'grade': '2'
-      },
-    ]
-  if action == "get_data":
-    pass #;TODO 实现获取数据的功能
+    result['a_radio'] = a_radio
+    result['all_router_num'] = all_router_num
+    result['online_router_num'] = online_router_num
+    result['danger_router_num'] = danger_router_num
+    result['nodes'] = nodes
+    result['links'] = links
+    result['tableData'] = tableData
+
+  if action == "get_real_each_data":
+    # 从packet里的最大（最新）时间; 后面可以按需改成当前时间
+    latest_time = models.Packet.objects.all().aggregate(Max('stime'))
+    # print(latest_time['stime__max'])
+    monitor_from_time = latest_time['stime__max'] - datetime.timedelta(minutes=monitor_minutes)
+    # print(monitor_from_time)
+    monitor_anomalys = models.Anomaly.objects.filter(time__gte=monitor_from_time)
+    ma_dict = {}
+    for ma in monitor_anomalys:
+      if ma.rid not in ma_dict:
+        ma_dict[ma.rid] = []
+      if ma.event not in ma_dict[ma.rid]:
+        ma_dict[ma.rid].append(ma.event)
+
+    routers_return = []
+    routers = models.Router.objects.all()
+    for (k,v) in ma_dict:
+      name = 'Router-' + str(k)
+      ips = routers.filter(rid = k).order_by('port').values_list('portip',flat= True)
+      ips = list(ips)
+      k_latest_time = models.Packet.objects.filter(rid = k).aggregate(Max('stime'))
+      k_monitor_from_time = k_latest_time['stime__max'] - datetime.timedelta(minutes=monitor_minutes)
+      k_monitor_packets = models.Packet.objects.filter(rid = k).filter(stime__gt = k_monitor_from_time)
+      k_monitor_packets = k_monitor_packets.order_by('stime')
+      k_lsr_num = k_monitor_packets.values_list('lsr_num',flat= True)
+      k_hello_num = k_monitor_packets.values_list('hello_num',flat= True)
+      k_lsu_num = k_monitor_packets.values_list('lsu_num',flat= True)
+      k_lsa_num = k_monitor_packets.values_list('lsa_num',flat= True)
+      hello_num = list(k_hello_num)
+      lsr_num = list(k_lsr_num)
+      lsu_num = list(k_lsu_num)
+      lsa_num = list(k_lsa_num)
+
+      for vv in v:
+        #检测期内此路由器可能出现多种异常，所以用一个列表v的形式
+        charts_name = ['Router-' + str(k) + str(vv) + '-rose', 'Router-' + str(k) + + str(vv)+ '-line']
+        show = monitor_anomalys.filter(Q(rid=k) & Q(event=vv)).order_by('time')[0]
+        ano_prob = []
+        ano_prob.append(show.prob_1 * 1000)
+        ano_prob.append(show.prob_2 * 1000)
+        ano_prob.append(show.prob_3 * 1000)
+        ano_prob.append(show.prob_4 * 1000)
+        ano_prob.append(show.prob_5 * 1000)
+        ano_prob.append(show.prob_6 * 1000)
+        time = show.time
+
 
 
   return JsonResponse(result, safe= False)

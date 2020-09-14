@@ -2,7 +2,8 @@ from django.db import models
 
 #; Create your models here.
 class Router(models.Model):
-    rid = models.PositiveSmallIntegerField() #路由器ID from 0, 如果不是从0开始需要修改links部分
+    #需要满足对称性
+    rid = models.PositiveSmallIntegerField() #路由器ID from 0
     port = models.PositiveSmallIntegerField() #端口
     portip = models.GenericIPAddressField() #端口IP
     neibrid = models.PositiveSmallIntegerField() #端口邻居路由器ID

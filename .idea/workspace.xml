@@ -5,12 +5,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebEngine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebEngine/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebUI/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/dist/static/css/real_global.5e34160b.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/dist/static/img/tuopu.df423a75.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/dist/static/js/app.58fee930.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebUI/dist/static/js/real_global.385f0c2c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/backend" beforeDir="false" afterPath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/backend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/real_each.vue" beforeDir="false" afterPath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/real_each.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/real_global.vue" beforeDir="false" afterPath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/real_global.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/simu_attack.vue" beforeDir="false" afterPath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/simu_attack.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/simu_each.vue" beforeDir="false" afterPath="$PROJECT_DIR$/WebUI/routing-security-vue/src/components/page/simu_each.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

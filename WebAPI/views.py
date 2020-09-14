@@ -25,6 +25,7 @@ def get_abn_bhvs(l):
 
 def get_graph(adj_dict, anm_router_list):
   #理论上存在节点没有邻居所以在adj_dict中没有表项的情况，所以节点的最大ID通过提前遍历得到
+  #这里默认路由器序号从0开始，当从1开始，max_id及links需要调整
   max_id  = -1
   links = []
   for (k,v) in adj_dict.items():
@@ -41,7 +42,7 @@ def get_graph(adj_dict, anm_router_list):
       category = 1
     symbolSize = 40
     nodes.append({'name':name, 'category': category, 'symbolSize': symbolSize})
-  return nodes,links
+  return max_id+1 , nodes , links
 
 def get_anomaly_all(anomalys):
   anomalys = anomalys.order_by('-time')
@@ -99,9 +100,9 @@ def API_action(request,action):
         router_nb_dict[router.rid] = []
       router_nb_dict[router.rid].append(router.neibrid)
     online_router_num = len(router_nb_dict) #当某个节点没有邻居的时候，将不会被统计
-    all_router_num = online_router_num  #路由器总数，应该为手动获取，这里直接等于在线路由器总数
     # print(router_nb_dict)
-    nodes,links = get_graph(router_nb_dict, abnormal_routers)
+    #路由器总数
+    all_router_num, nodes , links = get_graph(router_nb_dict, abnormal_routers)
 
     anomalys = models.Anomaly.objects.all()
     tableData, a_radio = get_anomaly_all(anomalys)
@@ -117,6 +118,7 @@ def API_action(request,action):
     result['nodes'] = nodes
     result['links'] = links
     result['tableData'] = tableData
+    return JsonResponse(result, safe=False)
 
   if action == "get_real_each_data":
     # 从packet里的最大（最新）时间; 后面可以按需改成当前时间
@@ -131,10 +133,9 @@ def API_action(request,action):
         ma_dict[ma.rid] = []
       if ma.event not in ma_dict[ma.rid]:
         ma_dict[ma.rid].append(ma.event)
-
     routers_return = []
     routers = models.Router.objects.all()
-    for (k,v) in ma_dict:
+    for (k,v) in ma_dict.items():
       name = 'Router-' + str(k)
       ips = routers.filter(rid = k).order_by('port').values_list('portip',flat= True)
       ips = list(ips)
@@ -153,18 +154,39 @@ def API_action(request,action):
 
       for vv in v:
         #检测期内此路由器可能出现多种异常，所以用一个列表v的形式
-        charts_name = ['Router-' + str(k) + str(vv) + '-rose', 'Router-' + str(k) + + str(vv)+ '-line']
+        charts_name = ['Router-' + str(k) + '-' + str(vv) + '-rose', 'Router-' + str(k) + '-' + str(vv)+ '-line']
         show = monitor_anomalys.filter(Q(rid=k) & Q(event=vv)).order_by('time')[0]
         ano_prob = []
-        ano_prob.append(show.prob_1 * 1000)
-        ano_prob.append(show.prob_2 * 1000)
-        ano_prob.append(show.prob_3 * 1000)
-        ano_prob.append(show.prob_4 * 1000)
-        ano_prob.append(show.prob_5 * 1000)
-        ano_prob.append(show.prob_6 * 1000)
+        ano_prob.append(show.prob_1 )
+        ano_prob.append(show.prob_2 )
+        ano_prob.append(show.prob_3 )
+        ano_prob.append(show.prob_4 )
+        ano_prob.append(show.prob_5 )
+        ano_prob.append(show.prob_6 )
         time = show.time
+        name = 'test2'
+        routers_return.append({'name': name, 'charts_name': charts_name, 'ips':ips, 'chart_rose': "c", 'chart_line': "c",'ano_prob': ano_prob, 'hello_num': hello_num,'lsr_num':lsr_num,'lsu_num':lsu_num, 'lsa_num': lsa_num})
+    result['routers'] = routers_return
+    return JsonResponse(result, safe=False)
 
+  if action == 'get_real_attack_data':
+    anomalys_return =[[],[],[],[],[],[]]
+    anomalys = models.Anomaly.objects.all()
+    for i in range(6):
+      num = -1
+      anomalys_each = anomalys.filter(event = i)
+      for a in anomalys_each:
+        num += 1
+        date = str(a.time).strip().split(' ')[0]
+        time = str(a.time).strip().split(' ')[1]
+        id = a.rid
+        max_prob = max(a.prob_1, a.prob_2, a.prob_3, a.prob_4, a.prob_5, a.prob_6)
+        grade = 1
+        if (max_prob > 0.5):
+          grade = 3
+        elif (max_prob > 0.3):
+          grade = 2
+        anomalys_return[i].append({'no': num, 'date': date, 'time': time, 'ID': id, 'grade': grade})
+    ???
 
-
-  return JsonResponse(result, safe= False)
   # raise SuspiciousOperation("Operation not allowed.")

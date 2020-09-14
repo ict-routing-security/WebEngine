@@ -43,7 +43,7 @@ export default {
       routers: [
         {
           name: 'Router-1',
-          charts_name: ['Router-1-rose','Router-1-line'],
+          charts_name: ['Router-1-1-rose','Router-1-1-line'],
           type: '思科 abcd',
           ips: ['192.168.1.1','192.168.1.2','192.168.1.3'],
           'chart_rose': null,

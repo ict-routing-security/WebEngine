@@ -24,9 +24,9 @@
           </div>序列号加一攻击
           <el-progress :percentage="a_radio[0]" color="#42b983"></el-progress>配置异常
           <el-progress :percentage="a_radio[1]" color="#f1e05a"></el-progress>LSR报文伪造攻击
-          <el-progress :percentage="a_radio[2]"></el-progress>最大年龄攻击
+          <el-progress :percentage="a_radio[2]" color="#4169E1"></el-progress>最大年龄攻击
           <el-progress :percentage="a_radio[3]" color="#f56c6c"></el-progress>伪装攻击
-          <el-progress :percentage="a_radio[4]" color="#f96c7a"></el-progress>最大序列号攻击
+          <el-progress :percentage="a_radio[4]" color="#FF1493"></el-progress>最大序列号攻击
           <el-progress :percentage="a_radio[5]" color="#0200a0"></el-progress>
         </el-card>
       </el-col>

@@ -24,7 +24,7 @@
       <el-col :span="10">
         <el-card shadow="hover" class="mgb20" style="height:450px;">
           <div class="time_line">
-            <div :class="line" :id="item.charts_name[1]" style="height: 440px;,width: 460px"></div>
+            <div :class="line" :id="item.charts_name[1]" style="height: 440px;,width: 470px"></div>
           </div>
         </el-card>
       </el-col>
@@ -36,62 +36,16 @@
 import Schart from 'vue-schart';
 import echarts from "echarts";
 import bus from '../common/bus';
+import axios from '@/api/axios';
 export default {
   name: 'real_each',
   data() {
     return {
-      routers: [
-        {
-          name: 'Router-1',
-          charts_name: ['Router-1-rose','Router-1-line'],
-          type: '思科 abcd',
-          ips: ['192.168.1.1','192.168.1.2','192.168.1.3'],
-          'chart_rose': null,
-          'chart_line': null,
-          ano_prob: [0.5,0.2400,0.060,0.040,0.0160,0.0300],
-          hello_num :[60,60,60,60,60,60,60,60,60,60,60,60],
-          lsr_num :[0,0,1,3,0,0,0,4,6,0,0,0],
-          lsu_num:[30,0,0,32,0,0,29,0,0,67,3,0],
-          lsa_num:[21,2,0,0,1,2,34,0,0,34,0,1]
-        },
-        {
-          name: 'Router-13',
-          charts_name: ['Router-13-rose','Router-13-line'],
-          type: '思科 abcd',
-          ips: ['192.168.13.1','192.168.1.2','192.168.13.3','192.168.13.2'],
-          chart_rose: null,
-          chart_line: null,
-          ano_prob: [300,400,60,405,190,300],
-          hello_num :[6,60],
-          lsr_num :[20,0,1,],
-          lsu_num:[30,0,0,32,],
-          lsa_num:[21,23,0,0,1,]
-        },
-        {
-          name: 'Router-7',
-          charts_name: ['Router-7-rose','Router-7-line'],
-          type: '思科 abcd',
-          ips: ['192.168.13.1','192.168.1.2','192.168.13.3','192.168.13.2'],
-          chart_rose: null,
-          chart_line: null,
-          ano_prob: [300,400,60,405,190,300],
-          hello_num :[6,60,60,60,60,62,60,60,60,60,60,60],
-          lsr_num :[20,0,1,3,0,0,0,4,6,0,0,0],
-          lsu_num:[30,0,0,32,0,0,49,3,0,67,3,0],
-          lsa_num:[21,23,0,0,1,2,24,0,0,34,0,1]
-        },
-      ],
+      routers: [],
     };
   },
-  mounted() {
-    this.initChart();
-  },
-  beforeDestroy() {
-    if (!this.chart_rose) {
-      return;
-    }
-    this.chart_rose.dispose();
-    this.chart_rose = null;
+  created() {
+    this.get_real_each_data()
   },
   components: {
     Schart
@@ -99,85 +53,105 @@ export default {
   computed: {
   },
   methods: {
+    get_real_each_data() {
+      axios.Get({
+        url : 'get_real_each_data',
+        params: {},
+        callback: (res) =>{
+          let data = res.data
+          this.routers = data['routers']
+
+          setTimeout(() => {
+            this.initChart();
+          }, 500);
+
+        }
+      })
+    },
     initChart() {
       for(var rt of this.routers){
         //rose
         rt.chart_rose = echarts.init(document.getElementById(rt.charts_name[0]));
         rt.chart_rose.setOption({
-          title: {
-            text: "各异常可能性",
-            left: "center",
-            top: 20,
-            textStyle: {
-              color: "#000000"
-            }
-          },
-          tooltip: {
-            trigger: "item",
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-          },
+              title: {
+                text: "各异常可能性",
+                left: "center",
+                top: 20,
+                textStyle: {
+                  color: "#000000"
+                }
+              },
+              tooltip: {
+                trigger: "item",
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+              },
 
-          visualMap: {
-            show: false,
-            min: 100,
-            max: 800,
-            inRange: {
-              colorLightness: [1, 0]
-            }
-          },
-          series: [
-            {
-              name: "异常类型",
-              type: "pie",
-              radius: "50%",
-              center: ["50%", "50%"],
-              data: [
-                { value: rt.ano_prob[0], name: "序列号加一攻击" },
-                { value: rt.ano_prob[1], name: "配置异常" },
-                { value: rt.ano_prob[2], name: "LSR报文伪造攻击" },
-                { value: rt.ano_prob[3], name: "最大年龄攻击" },
-                { value: rt.ano_prob[4], name: "伪装攻击" },
-                { value: rt.ano_prob[5], name: "最大序列号攻击" }
-              ].sort(function(a, b) {
-                return a.value - b.value;
-              }),
-              roseType: "radius",
-              label: {
-                normal: {
-                  textStyle: {
-                    color: "#000000"
+              visualMap: {
+                show: false,
+                min: 0,
+                max: 1,
+                inRange: {
+                  colorLightness: [1.0, 0]
+                },
+              },
+              series: [
+                {
+                  name: "异常类型",
+                  type: "pie",
+                  radius: "50%",
+                  center: ["50%", "50%"],
+                  data: [
+                    { value: rt.ano_prob[0], name: "序列号加一攻击" },
+                    { value: rt.ano_prob[1], name: "配置异常" },
+                    { value: rt.ano_prob[2], name: "LSR报文伪造攻击" },
+                    { value: rt.ano_prob[3], name: "最大年龄攻击" },
+                    { value: rt.ano_prob[4], name: "伪装攻击" },
+                    { value: rt.ano_prob[5], name: "最大序列号攻击" }
+                  ].sort(function(a, b) {
+                    return a.value - b.value;
+                  }),
+                  roseType: "radius",
+                  label: {
+                    normal: {
+                      textStyle: {
+                        color: "#000000"
+                      }
+                    }
+                  },
+                  labelLine: {
+                    normal: {
+                      lineStyle: {
+                        color: "#000000"
+                      },
+                      smooth: 0.2,
+                      length: 2,
+                      length2: 20
+                    }
+                  },
+                  itemStyle: {
+                    normal: {
+                      color: "#c23531",
+                      shadowBlur: 200,
+                      shadowColor: "rgba(0, 0, 0, 0.5)"
+                    }
+                  },
+
+                  animationType: "scale",
+                  animationEasing: "elasticOut",
+                  animationDelay: function(idx) {
+                    return Math.random() * 200;
                   }
                 }
-              },
-              labelLine: {
-                normal: {
-                  lineStyle: {
-                    color: "#000000"
-                  },
-                  smooth: 0.2,
-                  length: 2,
-                  length2: 20
-                }
-              },
-              itemStyle: {
-                normal: {
-                  color: "#c23531",
-                  shadowBlur: 200,
-                  shadowColor: "rgba(0, 0, 0, 0.5)"
-                }
-              },
-
-              animationType: "scale",
-              animationEasing: "elasticOut",
-              animationDelay: function(idx) {
-                return Math.random() * 200;
-              }
-            }
-          ]
+              ]
 
             }
         )
         //line
+        var x_data = []
+        for(var i =-60; i<0; i++ )
+        {
+          x_data.push(i)
+        }
         rt.chart_line = echarts.init(document.getElementById(rt.charts_name[1]))
         rt.chart_line.setOption({
           title: {
@@ -193,10 +167,10 @@ export default {
           },
           xAxis: {
             type: 'category',
-            data: ['-12', '-11', '-10', '-9', '-8', '-7', '-6', '-5', '-4', '-3', '-2', '-1'],   // x轴数据
-            name: '时间(min)',
+            data: x_data,   // x轴数据
+            name: '-时间(min)',
             axisLabel: {
-              interval: 0
+              interval: 5
             },
             // x轴名称样式
             nameTextStyle: {

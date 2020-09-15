@@ -171,35 +171,6 @@ export default {
           ]
         },
       ],
-
-      routers: [
-        {
-          name: 'Router-1',
-          charts_name: ['Router-1-rose','Router-1-line'],
-          type: '思科 abcd',
-          ips: ['192.168.1.1','192.168.1.2','192.168.1.3'],
-          chart_rose: null,
-          chart_line: null,
-          ano_prob: [700,400,60,405,190,300],
-          hello_num :[60,60,60,60,60,60,60,60,60,60,60,60],
-          lsr_num :[0,0,1,3,0,0,0,4,6,0,0,0],
-          lsu_num:[30,0,0,32,0,0,29,0,0,67,3,0],
-          lsa_num:[21,2,0,0,1,2,34,0,0,34,0,1]
-        },
-        {
-          name: 'Router-13',
-          charts_name: ['Router-13-rose','Router-13-line'],
-          type: '思科 abcd',
-          ips: ['192.168.13.1','192.168.1.2','192.168.13.3','192.168.13.2'],
-          chart_rose: null,
-          chart_line: null,
-          ano_prob: [300,400,60,405,190,300],
-          hello_num :[6,60,60,60,60,62,60,60,60,60,60,60],
-          lsr_num :[20,0,1,3,0,0,0,4,6,0,0,0],
-          lsu_num:[30,0,0,32,0,0,49,3,0,67,3,0],
-          lsa_num:[21,23,0,0,1,2,24,0,0,34,0,1]
-        },
-      ],
     };
   },
   mounted() {

@@ -139,6 +139,7 @@ def API_action(request,action):
       name = 'Router-' + str(k)
       ips = routers.filter(rid = k).order_by('port').values_list('portip',flat= True)
       ips = list(ips)
+      #测试情况下可能会出现packet没有相应表项的情况
       k_latest_time = models.Packet.objects.filter(rid = k).aggregate(Max('stime'))
       k_monitor_from_time = k_latest_time['stime__max'] - datetime.timedelta(minutes=monitor_minutes)
       k_monitor_packets = models.Packet.objects.filter(rid = k).filter(stime__gt = k_monitor_from_time)
@@ -187,6 +188,12 @@ def API_action(request,action):
         elif (max_prob > 0.3):
           grade = 2
         anomalys_return[i].append({'no': num, 'date': date, 'time': time, 'ID': id, 'grade': grade})
-    ???
+    result['attack0'] = anomalys_return[0]
+    result['attack1'] = anomalys_return[1]
+    result['attack2'] = anomalys_return[2]
+    result['attack3'] = anomalys_return[3]
+    result['attack4'] = anomalys_return[4]
+    result['attack5'] = anomalys_return[5]
+    return JsonResponse(result, safe=False)
 
   # raise SuspiciousOperation("Operation not allowed.")

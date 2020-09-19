@@ -21,6 +21,9 @@ import os
 from WebEngine.settings import BASE_DIR
 from WebAPI.views import API_action
 
+from apscheduler.schedulers.background import BackgroundScheduler
+from django_apscheduler.jobstores import DjangoJobStore, register_job
+
 urlpatterns = [
   path('admin/',admin.site.urls,{},'admin'),
   #;TODO 添加规则，将“ui/”重定向至“ui/index.html”
@@ -29,3 +32,12 @@ urlpatterns = [
   },'ui'),
   re_path(r'^api/(?P<action>.*)$',API_action,{},'api'),
 ]
+
+scheduler = BackgroundScheduler()
+scheduler.add_jobstore(DjangoJobStore(), "default")
+@register_job(scheduler, "interval", seconds=3, id='2')
+def test_job():
+    print("我是apscheduler任务")
+# per-execution monitoring, call register_events on your scheduler
+scheduler.start()
+print("Scheduler started!")

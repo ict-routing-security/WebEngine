@@ -197,3 +197,17 @@ def API_action(request,action):
     return JsonResponse(result, safe=False)
 
   # raise SuspiciousOperation("Operation not allowed.")
+def get_num_routers():
+  r_num = models.Router.objects.values_list('rid', flat= True)
+  r_num = list_delete_duplicate(list(r_num))
+  return len(r_num)
+def get_num_ports(rid):
+  p_num = models.Router.objects.filter(rid = rid).values_list('port', flat= True)
+  p_num = list_delete_duplicate(list(p_num))
+  return len(p_num)
+
+def write_packet(rid, stime, hello_num, lsr_num, lsu_num, lsa_num):
+  models.Packet.objects.create(rid=rid, stime=stime, hello_num=hello_num, lsr_num=lsr_num, lsu_num=lsu_num, lsa_num=lsa_num)
+
+def write_anomaly(rid,time,event,prob_1,prob_2,prob_3,prob_4,prob_5,prob_6):
+  models.Anomaly.objects.create(rid=rid, time=time, event=event, prob_1=prob_1, prob_2=prob_2, prob_3=prob_3, prob_4=prob_4, prob_5=prob_5, prob_6=prob_6)

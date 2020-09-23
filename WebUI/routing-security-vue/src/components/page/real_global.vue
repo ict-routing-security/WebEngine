@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="20">
       <el-col :span="8">
-        <el-card shadow="hover" class="mgb20" style="height:292px;">
+        <el-card shadow="hover" class="mgb20" style="height:312px;">
           <div class="user-info">
             <img :src="get_status_pic" class="user-avator" alt />
             <div class="user-info-cont">
@@ -17,6 +17,7 @@
             可能存在的异常行为：
             <span>{{abnormal_behaviors}}</span>
           </div>
+          <el-button @click="to_realeach" style="padding: 5px 0">点击查看异常详情</el-button>
         </el-card>
         <el-card shadow="hover" style="height:342px;">
           <div slot="header" class="clearfix">
@@ -66,7 +67,7 @@
             </el-card>
           </el-col>
         </el-row>
-        <el-card shadow="hover" style="height:533px;">
+        <el-card shadow="hover" style="height:553px;">
           <div slot="header" class="clearfix">
             <span>最近一小时路由拓扑</span>
           </div>
@@ -81,6 +82,7 @@
       <el-card shadow="hover" :body-style="{padding: '0px'}">
         <div slot="header" class="clearfix">
           <span>历史全部异常记录</span>
+          <el-button @click="to_realattack" style="float: right; padding: 5px 0">点击查看各异常事件</el-button>
         </div>
         <el-table
             :data="tableData"
@@ -284,6 +286,12 @@ export default {
         }
       })
     },
+    to_realeach(){
+      this.$router.push('/realeach')
+    },
+    to_realattack(){
+      this.$router.push('/realattack')
+    }
     // handleListener() {
     //     bus.$on('collapse', this.handleBus);
     //     // 调用renderChart方法对图表进行重新渲染

@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import path,re_path
 from django.views.static import serve
 import os
-
+import numpy as np
 from WebEngine.settings import BASE_DIR
 from WebAPI.views import API_action
-
+from WebAPI.extract import packets_process
+from WebAPI.classify_model import predict
 from apscheduler.schedulers.background import BackgroundScheduler
-from django_apscheduler.jobstores import DjangoJobStore, register_job
 
 urlpatterns = [
   path('admin/',admin.site.urls,{},'admin'),
@@ -34,10 +34,19 @@ urlpatterns = [
 ]
 
 scheduler = BackgroundScheduler()
-scheduler.add_jobstore(DjangoJobStore(), "default")
-@register_job(scheduler, "interval", seconds=3, id='2')
-def test_job():
-    print("我是apscheduler任务")
-# per-execution monitoring, call register_events on your scheduler
+def extract():
+  #要求镜像的数据包具有特定命名; 后续：定期清除数据库的历史数据
+  print('后台开始更新......')
+  id_list = [8]
+  for id in id_list:
+    pkg_file_name = 'packets'+str(id)+'.pcap'
+    packets_process(id, pkg_file_name)
+    fea_flie = np.loadtxt('WebAPI/features'+str(id)+'.csv',delimiter=',', dtype=np.str)
+    # print(fea_flie[0:3])
+    predict(fea_flie)
+
+#后续：修改成时间格式
+scheduler.add_job(extract, "interval",  minutes=60)
 scheduler.start()
 print("Scheduler started!")
+
